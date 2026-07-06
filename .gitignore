@@ -1,0 +1,65 @@
+# Nextflow
+.nextflow/
+work/
+
+# Pipeline outputs
+results/
+output/
+logs/
+
+# Conda / Mamba environments
+.conda/
+conda/
+.env/
+venv/
+.venv/
+
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+
+# Mac OS
+.DS_Store
+
+# VS Code
+.vscode/
+
+
+# Temporary files
+*.tmp
+# Nextflow
+.nextflow/
+work/
+
+# Pipeline outputs
+results/
+output/
+logs/
+
+# Conda / Mamba environments
+.conda/
+conda/
+.env/
+venv/
+.venv/
+
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+
+# Mac OS
+.DS_Store
+
+# VS Code
+.vscode/
+
+
+# Temporary files
+*.tmp
+*.log
