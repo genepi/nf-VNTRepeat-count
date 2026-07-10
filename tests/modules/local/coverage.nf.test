@@ -1,0 +1,40 @@
+nextflow_process {
+
+    name "Test Process COVERAGE"
+    script "modules/local/coverage.nf"
+    process "COVERAGE"
+
+    test("Should execute coverage.nf and create output") {
+        def bamFile = file("test-data/bam/NA12718.final.cram.LPA.bam")
+        def bedFile = file("assets/lpa_nonrep_exons/exons1.bed")
+
+        when {
+            params {
+                bam_dir                        = "test-data/bam"
+            }
+            process {
+                """
+                // define inputs of the process here. 
+                input[0] = tuple(file("${bamFile}"), file("${bedFile}"))
+
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            // global automated test
+            assert snapshot(process.out).match()
+
+            // checks if output file exists
+            assert path(process.out.row[0]).exists()
+
+            // check amount of lines
+            assert process.out.row.size() == 1
+
+        }
+
+    }
+
+}

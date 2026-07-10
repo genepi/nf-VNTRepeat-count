@@ -1,0 +1,19 @@
+{
+    "Should execute coverage.nf and create output": {
+        "content": [
+            {
+                "0": [
+                    "NA12718_exons1.tsv:md5,80bded994d9d86950211b14c60c394ee"
+                ],
+                "row": [
+                    "NA12718_exons1.tsv:md5,80bded994d9d86950211b14c60c394ee"
+                ]
+            }
+        ],
+        "timestamp": "2026-07-10T11:17:56.691684",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.0"
+        }
+    }
+}

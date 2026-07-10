@@ -1,6 +1,8 @@
 # Nextflow
 .nextflow/
 work/
+.nextflow.log
+.nextflow.log.*
 
 # Pipeline outputs
 results/
@@ -13,6 +15,9 @@ conda/
 .env/
 venv/
 .venv/
+
+# nf-test cache and generated files
+.nf-test/
 
 
 # R
