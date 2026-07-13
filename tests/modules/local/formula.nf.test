@@ -1,0 +1,33 @@
+nextflow_process {
+
+    name "Test Process FORMULA"
+    script "modules/local/formula.nf"
+    process "FORMULA"
+
+test("Should execute formula.nf and create output") {
+       
+        
+      when {
+    process {
+        """
+        input[0] = file("\${projectDir}/test-data/input_formula/coverage_summary.tsv")
+        """
+    }
+}
+
+
+        then {
+            assert process.success
+
+            // global automated test
+            assert snapshot(process.out).match()
+
+            // checks if output file exists
+            assert path(process.out.results[0]).exists()
+
+
+        }
+
+    }
+
+}

@@ -1,0 +1,17 @@
+BAM	BED	SUM
+NA19308.final.cram.LPA.bam	exons1.bed	357.169
+NA12718.final.cram.LPA.bam	exons1.bed	320.481
+NA19235.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	kiv2-1.bed	569.45
+NA19108.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	kiv2-2.bed	636.956
+NA19108.final.cram.LPA.bam	exons2.bed	282.746
+NA19235.final.cram.LPA.bam	exons2.bed	279.555
+NA19235.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	kiv2-2.bed	542.33
+NA12718.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	kiv2-1.bed	655.812
+NA19308.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	kiv2-2.bed	931.324
+NA12718.final.cram.LPA.bam	exons2.bed	291.345
+NA19308.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	kiv2-1.bed	1099.39
+NA19235.final.cram.LPA.bam	exons1.bed	245.338
+NA19108.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	kiv2-1.bed	712.506
+NA19108.final.cram.LPA.bam	exons1.bed	265.112
+NA12718.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	kiv2-2.bed	603.681
+NA19308.final.cram.LPA.bam	exons2.bed	418.11

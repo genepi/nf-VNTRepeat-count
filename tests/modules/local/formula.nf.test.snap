@@ -1,0 +1,19 @@
+{
+    "Should execute formula.nf and create output": {
+        "content": [
+            {
+                "0": [
+                    "estimates.tsv:md5,222c1a07033bf16764713770a159621d"
+                ],
+                "results": [
+                    "estimates.tsv:md5,222c1a07033bf16764713770a159621d"
+                ]
+            }
+        ],
+        "timestamp": "2026-07-13T14:09:54.957695",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.0"
+        }
+    }
+}
