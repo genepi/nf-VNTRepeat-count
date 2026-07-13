@@ -1,6 +1,8 @@
 nextflow.enable.dsl=2
 
 include { COVERAGE } from './modules/local/coverage.nf'
+include { FORMULA } from './modules/local/formula.nf'
+
 
 workflow {
     main:
@@ -17,16 +19,25 @@ workflow {
 
     COVERAGE(all_pairs_ch)
     
-    coverage_summary = COVERAGE.out.row
+    coverage_summary_ch = COVERAGE.out.row
         .collectFile(name: params.output_file_coverage, seed: "BAM\tBED\tSUM\n", newLine: false)
 
+    FORMULA(coverage_summary_ch)
+
+
     publish:
-    coverage = coverage_summary
+    coverage = coverage_summary_ch
+    formula =  FORMULA.out.results 
 }
 
 output {
     coverage {
         path 'coverage'
+        mode 'copy'
+    }
+
+    formula {
+        path 'formula'
         mode 'copy'
     }
 }
