@@ -22,12 +22,15 @@ estimates <- estimates %>%
 
 
 
-estimates <- estimates %>%
+
+
+  estimates <- estimates %>%
   dplyr::mutate(
-    cne_kiv2_1 = ifelse(!is.na(`nonrep-exon-1.bed`), `vntr-exon-1.bed` / (`nonrep-exon-1.bed`), NA),
-    cne_kiv2_2 = ifelse(!is.na(`nonrep-exon-2.bed`), `vntr-exon-2.bed` / (`nonrep-exon-2.bed`), NA),
-    cne_kiv2 = 1/2 * (cne_kiv2_1 + cne_kiv2_2)
+    nonrep_mean = rowMeans(dplyr::select(., dplyr::starts_with("nonrep")), na.rm = TRUE),
+    vntr_mean = rowMeans(dplyr::select(., dplyr::starts_with("vntr")), na.rm = TRUE),
+    cne_vntr = ifelse(!is.na(nonrep_mean) & nonrep_mean != 0, vntr_mean / nonrep_mean, NA)
   )
+
 
 # Relative difference tells you how big the difference is compared to the size of the numbers.
 # Quite relaxed to just filter extremes: keeps rows where kiv2_1 and kiv2_2 differ by 99.9% or less relative to their average.
