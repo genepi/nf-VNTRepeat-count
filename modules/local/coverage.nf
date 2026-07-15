@@ -9,7 +9,7 @@ process COVERAGE {
 
     script:
     """
-    SUM=\$(bedtools coverage -a ${bed} -b ${bam} -mean | awk '{sum += \$5} END {print sum+0}')
-    echo -e "${bam.name}\t${bed.name}\t\$SUM" > "${bam.simpleName}_${bed.simpleName}.tsv"
+    MEAN=\$(bedtools coverage -a ${bed} -b ${bam} -mean | awk '{sum += \$5; n++} END {print (n>0 ? sum/n : 0)}')
+    echo -e "${bam.name}\t${bed.name}\t\$MEAN" > "${bam.simpleName}_${bed.simpleName}.tsv"
     """
 }
