@@ -20,7 +20,7 @@ workflow {
     COVERAGE(all_pairs_ch)
     
     coverage_summary_ch = COVERAGE.out.row
-        .collectFile(name: params.output_file_coverage, seed: "BAM\tBED\tSUM\n", newLine: false)
+        .collectFile(name: params.output_file_coverage, seed: "BAM\tBED\tMEAN\n", newLine: false)
 
     FORMULA(coverage_summary_ch)
 

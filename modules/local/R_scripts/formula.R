@@ -17,22 +17,15 @@ estimates <- estimates %>%
   pivot_wider(
     id_cols = exome,
     names_from = BED,
-    values_from = SUM
+    values_from = MEAN
   )
 
-estimates <- estimates %>%
-  rename(
-    exons1_sum = `exons1.bed`,
-    exons2_sum = `exons2.bed`,
-    kiv2_1 = `kiv2-1.bed`,
-    kiv2_2 = `kiv2-2.bed`,
-    proband = `exome`
-  )
+
 
 estimates <- estimates %>%
   dplyr::mutate(
-    cne_kiv2_1 = ifelse(!is.na(exons1_sum), kiv2_1 / (1/8 * exons1_sum), NA),
-    cne_kiv2_2 = ifelse(!is.na(exons2_sum), kiv2_2 / (1/8 * exons2_sum), NA),
+    cne_kiv2_1 = ifelse(!is.na(`nonrep-exon-1.bed`), `vntr-exon-1.bed` / (`nonrep-exon-1.bed`), NA),
+    cne_kiv2_2 = ifelse(!is.na(`nonrep-exon-2.bed`), `vntr-exon-2.bed` / (`nonrep-exon-2.bed`), NA),
     cne_kiv2 = 1/2 * (cne_kiv2_1 + cne_kiv2_2)
   )
 
@@ -40,6 +33,6 @@ estimates <- estimates %>%
 # Quite relaxed to just filter extremes: keeps rows where kiv2_1 and kiv2_2 differ by 99.9% or less relative to their average.
 rel_threshold <- 0.999
 estimates <- estimates %>%
-  filter(abs(kiv2_1 - kiv2_2) / ((kiv2_1 + kiv2_2) / 2) <= rel_threshold)
+  filter(abs(`vntr-exon-1.bed` - `vntr-exon-2.bed`) / ((`vntr-exon-1.bed` + `vntr-exon-2.bed`) / 2) <= rel_threshold)
 
 write.table(estimates, output_estimates, sep = "\t", quote = FALSE, row.names = FALSE)
