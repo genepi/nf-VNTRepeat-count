@@ -3,12 +3,13 @@ process FORMULA {
 
     input:
     path coverage_summary
+    path formula_script
 
     output:
     path "estimates.tsv", emit: results
 
     script:
     """
-    Rscript ${moduleDir}/R_scripts/formula.R ${coverage_summary} estimates.tsv
+   Rscript ${formula_script} ${coverage_summary} estimates.tsv
     """
 }
