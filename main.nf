@@ -22,8 +22,8 @@ workflow {
     coverage_summary_ch = COVERAGE.out.row
         .collectFile(name: params.output_file_coverage, seed: "BAM\tBED\tMEAN\n", newLine: false)
 
-    FORMULA(coverage_summary_ch)
-
+    FORMULA(coverage_summary_ch, 
+            file("${projectDir}/modules/local/R_scripts/formula.R"))
 
     publish:
     coverage = coverage_summary_ch
