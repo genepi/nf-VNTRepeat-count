@@ -1,4 +1,5 @@
 [![CI Tests](https://github.com/genepi/nf-VNTRepeat-count/actions/workflows/ci-tests.yml/badge.svg)](https://github.com/genepi/nf-VNTRepeat-count/actions/workflows/ci-tests.yml)
+[![nf-test](https://img.shields.io/badge/tested_with-nf--test-337ab7.svg)](https://github.com/askimed/nf-test)
 
 # nf-VNTRepeat-count: A pipeline to estimate VNTR repeat count from short-read sequencing data
 
