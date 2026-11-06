@@ -1,7 +1,7 @@
 nextflow.enable.dsl=2
 
 include { COVERAGE } from './modules/local/coverage.nf'
-include { FORMULA } from './modules/local/formula.nf'
+include { COPY_NUMBER } from './modules/local/copy_number.nf'
 
 
 workflow {
@@ -22,12 +22,12 @@ workflow {
     coverage_summary_ch = COVERAGE.out.row
         .collectFile(name: 'coverage_summary.tsv', seed: "BAM\tBED\tTYPE\tMEAN\n", newLine: false, sort: { it.name })
 
-    FORMULA(coverage_summary_ch, 
-            file("${projectDir}/modules/local/R_scripts/formula.R"))
+    COPY_NUMBER(coverage_summary_ch, 
+                file("${projectDir}/modules/local/R_scripts/copy_number.R"))
 
     publish:
     coverage = coverage_summary_ch
-    estimates = FORMULA.out.results
+    estimates = COPY_NUMBER.out.results
 }
 
 output {

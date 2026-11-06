@@ -1,17 +1,17 @@
 nextflow_process {
 
-    name "Test Process FORMULA"
-    script "modules/local/formula.nf"
-    process "FORMULA"
+    name "Test Process COPY_NUMBER"
+    script "modules/local/copy_number.nf"
+    process "COPY_NUMBER"
 
-test("Should execute formula.nf and create output") {
+test("Should execute copy_number.nf and create output") {
        
         
       when {
     process {
         """
-        input[0] = file("\${projectDir}/test-data/input_formula/coverage_summary.tsv")
-        input[1] = file("\${projectDir}/modules/local/R_scripts/formula.R")
+        input[0] = file("\${projectDir}/test-data/input_copy_number/coverage_summary.tsv")
+        input[1] = file("\${projectDir}/modules/local/R_scripts/copy_number.R")
         """
     }
 }
@@ -36,8 +36,8 @@ test("Should group BED files by type and not by file name") {
       when {
     process {
         """
-        input[0] = file("\${projectDir}/test-data/input_formula/coverage_summary_custom_names.tsv")
-        input[1] = file("\${projectDir}/modules/local/R_scripts/formula.R")
+        input[0] = file("\${projectDir}/test-data/input_copy_number/coverage_summary_custom_names.tsv")
+        input[1] = file("\${projectDir}/modules/local/R_scripts/copy_number.R")
         """
     }
 }

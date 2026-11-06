@@ -1,5 +1,5 @@
 {
-    "Should execute formula.nf and create output": {
+    "Should execute copy_number.nf and create output": {
         "content": [
             {
                 "0": [
