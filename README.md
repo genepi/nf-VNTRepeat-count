@@ -6,11 +6,6 @@ A DSL2 Nextflow pipeline that estimates the copy number of a VNTR (variable numb
 
 The pipeline has been applied to the **KIV-2 VNTR** of the *LPA* gene, which is the default setup. It can be used for any gene with a VNTR, as long as the exon coordinates are known and the BAM files are available. See [Using another gene](#using-another-gene).
 
-## How it works
-
-1. **COVERAGE** calculates the mean read coverage of each set of target regions in each alignment file.
-2. **FORMULA** combines the coverage values of each sample and estimates the VNTR copy number as the ratio of the mean VNTR coverage to the mean non-repetitive coverage.
-
 ## Requirements
 
 - [Nextflow](https://www.nextflow.io/docs/latest/install.html) 25.10.0 or later, which you can install with [Micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html) as shown below.
