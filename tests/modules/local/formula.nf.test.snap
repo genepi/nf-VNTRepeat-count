@@ -3,17 +3,17 @@
         "content": [
             {
                 "0": [
-                    "estimates.tsv:md5,21db5d46d11d1d5fdffa26794ea7be59"
+                    "estimates.tsv:md5,ffcd39a342e9b9e8fed12717a1ede849"
                 ],
                 "results": [
-                    "estimates.tsv:md5,21db5d46d11d1d5fdffa26794ea7be59"
+                    "estimates.tsv:md5,ffcd39a342e9b9e8fed12717a1ede849"
                 ]
             }
         ],
-        "timestamp": "2026-07-15T16:01:17.537688",
+        "timestamp": "2026-11-06T18:57:11.026011",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.0"
+            "nextflow": "26.10.5"
         }
     }
 }
