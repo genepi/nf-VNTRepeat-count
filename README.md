@@ -36,7 +36,7 @@ You need two directories of BAM files:
 
 | Directory | Contents |
 | --- | --- |
-| `--bam_dir` | Original BAM files, aligned to hg38 for the default *LPA* coordinates |
+| `--bam_dir` | Original BAM files, aligned to the same reference as the `--nonrep_bed` coordinates |
 | `--bam_dir_vntr` | The same samples realigned to the VNTR reference. For the default KIV-2 coordinates, the contig is `KIV2_6` |
 
 The pipeline does not do the realignment yet, so you need to create these BAM files first with the [vntr-calling-nf](https://github.com/genepi/vntr-calling-nf) pipeline.
@@ -73,9 +73,11 @@ All files ending in `.bam` directly inside each directory are used as input. CRA
 | --- | --- | --- |
 | `--bam_dir` | Directory with the original BAM files | Required |
 | `--bam_dir_vntr` | Directory with the realigned BAM files | Required |
-| `--nonrep_bed` | BED files with the non-repetitive coordinates, in hg38 | `assets/lpa_nonrep_exons/nonrep-exon-{1,2}.bed` |
+| `--nonrep_bed` | BED files with the non-repetitive coordinates, relative to the reference of the `--bam_dir` BAM files | `assets/lpa_nonrep_exons/nonrep-exon-{1,2}.bed` |
 | `--vntr_bed` | BED files with the VNTR coordinates, relative to the VNTR reference | `assets/lpa_kiv2_exons/vntr-exon-{1,2}.bed` |
 | `--save_coverage` | Also write the coverage summary to `results/coverage/` | `false` |
+
+The default `--nonrep_bed` coordinates are for hg38. For other references, such as hg37, pass your own BED files with `--nonrep_bed`.
 
 ### Using another gene
 
