@@ -8,7 +8,7 @@ The pipeline has been applied to the **KIV-2 VNTR** of the *LPA* gene, which is 
 
 ## Requirements
 
-- [Nextflow](https://www.nextflow.io/docs/latest/install.html) 25.10.0 or later, which you can install with [Micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html) as shown below.
+- [Nextflow](https://www.nextflow.io/docs/latest/install.html) 25.10.0 or later, which you can install with [Mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html) as shown below.
 - [Docker](https://docs.docker.com/get-docker/) or [Singularity](https://docs.sylabs.io/guides/latest/user-guide/). The containers are downloaded automatically on the first run.
 
 ## Quick start
@@ -16,8 +16,8 @@ The pipeline has been applied to the **KIV-2 VNTR** of the *LPA* gene, which is 
 Install Nextflow and nf-test in their own environment:
 
 ```bash
-micromamba create -y -n nextflow -c conda-forge -c bioconda "nextflow>=25.10.0" nf-test
-micromamba activate nextflow
+mamba create -y -n nextflow -c conda-forge -c bioconda "nextflow>=25.10.0" nf-test
+mamba activate nextflow
 ```
 
 Clone the repository and run the included test data. Run this from the repository root, because the test paths are relative to it.
