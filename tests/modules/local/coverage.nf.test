@@ -6,7 +6,7 @@ nextflow_process {
 
     test("Should execute coverage.nf and create output") {
         def bamFile = file("test-data/bam/NA12718.final.cram.LPA.bam")
-        def bedFile = file("assets/lpa_nonrep_exons/exons1.bed")
+        def bedFile = file("assets/lpa_nonrep_exons/nonrep-exon-1.bed")
 
         when {
             params {
