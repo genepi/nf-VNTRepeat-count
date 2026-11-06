@@ -11,12 +11,12 @@ estimates <- read.table(coverage_summary, header = TRUE, sep = "\t", stringsAsFa
 
 estimates <- estimates %>%
   mutate(
-    exome = as.numeric(str_extract(BAM, "\\d+"))
+    sample = str_extract(BAM, "^[^.]+")
   )
 
 estimates <- estimates %>%
   pivot_wider(
-    id_cols = exome,
+    id_cols = sample,
     names_from = BED,
     values_from = MEAN
   )
