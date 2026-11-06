@@ -27,17 +27,18 @@ workflow {
 
     publish:
     coverage = coverage_summary_ch
-    formula =  FORMULA.out.results 
+    estimates = FORMULA.out.results
 }
 
 output {
     coverage {
+        enabled params.save_coverage
         path 'coverage'
         mode 'copy'
     }
 
-    formula {
-        path 'formula'
+    estimates {
+        path 'estimates'
         mode 'copy'
     }
 }

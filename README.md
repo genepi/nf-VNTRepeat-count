@@ -1,8 +1,8 @@
-# nf-VNTRepeat-count
+# nf-VNTRepeat-count: A pipeline to estimate VNTR repeat count from short-read sequencing data
 
-A Nextflow pipeline that estimates the copy number of a VNTR (variable number tandem repeat) from read coverage. It compares the mean coverage of the repeated exons with the mean coverage of the gene's non-repetitive exons.
+A DSL2 Nextflow pipeline that estimates the copy number of a VNTR (variable number tandem repeat) from read coverage in WES or WGS data. It compares the mean coverage of the repeated exons with the mean coverage of the gene's non-repetitive exons.
 
-It can be used for any gene with a VNTR, as long as the exon coordinates are known and the BAM files are available. The defaults are set up for the KIV-2 repeat in *LPA*. See [Using another gene](#using-another-gene).
+The pipeline has been applied to the **KIV-2 VNTR** of the *LPA* gene, which is the default setup. It can be used for any gene with a VNTR, as long as the exon coordinates are known and the BAM files are available. See [Using another gene](#using-another-gene).
 
 ## How it works
 
@@ -50,11 +50,25 @@ nextflow run main.nf -profile docker \
     --bam_dir_vntr /path/to/realigned_bams
 ```
 
+You can also keep the paths in your own config file:
+
+```groovy
+// my.config
+params {
+    bam_dir      = "/path/to/bams"
+    bam_dir_vntr = "/path/to/realigned_bams"
+}
+```
+
+```bash
+nextflow run main.nf -c my.config -profile docker
+```
+
 ### BAM file names
 
 Samples are matched by the part of the file name before the first dot, so both BAM files of a sample must start with the same name, such as `NA12718.final.bam` and `NA12718.realigned.bam`.
 
-Only files ending in `.bam` directly inside each directory are used. CRAM files are not picked up.
+All files ending in `.bam` directly inside each directory are used as input. CRAM files are not picked up.
 
 ## Parameters
 
@@ -62,8 +76,9 @@ Only files ending in `.bam` directly inside each directory are used. CRAM files 
 | --- | --- | --- |
 | `--bam_dir` | Directory with the original BAM files | Required |
 | `--bam_dir_vntr` | Directory with the realigned BAM files | Required |
-| `--exons_coord` | BED files for the non-repetitive exons | `assets/lpa_nonrep_exons/nonrep-exon-{1,2}.bed` |
+| `--exons_coord` | BED files for the non-repetitive exons, in hg38 coordinates | `assets/lpa_nonrep_exons/nonrep-exon-{1,2}.bed` |
 | `--vntr_exons_coord` | BED files for the VNTR exons, in VNTR reference coordinates | `assets/lpa_kiv2_exons/vntr-exon-{1,2}.bed` |
+| `--save_coverage` | Also write the coverage summary to `results/coverage/` | `false` |
 | `--output_file_coverage` | Name of the coverage summary file | `coverage_summary.tsv` |
 
 ### Using another gene
@@ -82,12 +97,12 @@ nextflow run main.nf -profile docker \
 
 ## Output
 
-Results are written to `results/`:
+Results are written to `results/`. The estimated copy number of the VNTR is the `cne_vntr` column in `estimates.tsv`.
 
 | File | Contents |
 | --- | --- |
-| `results/coverage/coverage_summary.tsv` | One row per BAM and BED combination, with the columns `BAM`, `BED` and `MEAN` |
-| `results/formula/estimates.tsv` | One row per sample |
+| `results/estimates/estimates.tsv` | One row per sample |
+| `results/coverage/coverage_summary.tsv` | One row per BAM and BED combination, with the columns `BAM`, `BED` and `MEAN`. Only written with `--save_coverage` |
 
 `estimates.tsv` contains these columns:
 
@@ -109,4 +124,4 @@ nf-test test
 
 ## License
 
-See [LICENSE](LICENSE).
+The pipeline is MIT licensed. See [LICENSE](LICENSE).
