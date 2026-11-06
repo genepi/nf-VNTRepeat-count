@@ -2,9 +2,9 @@
 
 # nf-VNTRepeat-count: A pipeline to estimate VNTR repeat count from short-read sequencing data
 
-A DSL2 Nextflow pipeline that estimates the copy number of a VNTR (variable number tandem repeat) from read coverage in WES or WGS data. It compares the mean coverage of the repeated exons with the mean coverage of the gene's non-repetitive exons.
+A DSL2 Nextflow pipeline that estimates the copy number of a VNTR (variable number tandem repeat) from read coverage in WES or WGS data. It compares the mean coverage of the VNTR coordinates with the mean coverage of the gene's non-repetitive coordinates.
 
-The pipeline has been applied to the **KIV-2 VNTR** of the *LPA* gene, which is the default setup. It can be used for any gene with a VNTR, as long as the exon coordinates are known and the BAM files are available. See [Using another gene](#using-another-gene).
+The pipeline has been applied to the **KIV-2 VNTR** of the *LPA* gene, which is the default setup. It can be used for any gene with a VNTR, as long as the VNTR coordinates and non-repetitive coordinates are known and the BAM files are available. See [Using another gene](#using-another-gene).
 
 ## Requirements
 
@@ -73,13 +73,13 @@ All files ending in `.bam` directly inside each directory are used as input. CRA
 | --- | --- | --- |
 | `--bam_dir` | Directory with the original BAM files | Required |
 | `--bam_dir_vntr` | Directory with the realigned BAM files | Required |
-| `--nonrep_bed` | BED files for the non-repetitive regions, in hg38 coordinates | `assets/lpa_nonrep_exons/nonrep-exon-{1,2}.bed` |
-| `--vntr_bed` | BED files for the VNTR regions, in VNTR reference coordinates | `assets/lpa_kiv2_exons/vntr-exon-{1,2}.bed` |
+| `--nonrep_bed` | BED files with the non-repetitive coordinates, in hg38 | `assets/lpa_nonrep_exons/nonrep-exon-{1,2}.bed` |
+| `--vntr_bed` | BED files with the VNTR coordinates, relative to the VNTR reference | `assets/lpa_kiv2_exons/vntr-exon-{1,2}.bed` |
 | `--save_coverage` | Also write the coverage summary to `results/coverage/` | `false` |
 
 ### Using another gene
 
-The pipeline works for any gene if you have the coordinates of its repeated and non-repetitive regions, plus BAM files covering the gene and BAM files realigned to the VNTR reference.
+The pipeline works for any gene if you have its VNTR coordinates and non-repetitive coordinates, plus BAM files covering the gene and BAM files realigned to the VNTR reference.
 
 Pass your own BED files with a quoted glob. The files can have any name, as long as each name is used only once across both parameters.
 
