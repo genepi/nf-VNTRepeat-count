@@ -6,14 +6,14 @@ include { FORMULA } from './modules/local/formula.nf'
 
 workflow {
     main:
-    exons_nonrep_ch      = Channel.fromPath(params.exons_coord, checkIfExists: true)
+    nonrep_bed_ch      = Channel.fromPath(params.nonrep_bed, checkIfExists: true)
     bam_ch      = Channel.fromPath("${params.bam_dir}/*.bam", checkIfExists: true)
 
-    vntr_exons_coord_ch = Channel.fromPath(params.vntr_exons_coord, checkIfExists: true)
+    vntr_bed_ch = Channel.fromPath(params.vntr_bed, checkIfExists: true)
     bam_vntr_ch = Channel.fromPath("${params.bam_dir_vntr}/*.bam", checkIfExists: true)
 
-    pairs_ch      = bam_ch.combine(exons_nonrep_ch).map { bam, bed -> tuple('nonrep', bam, bed) }
-    pairs_vntr_ch = bam_vntr_ch.combine(vntr_exons_coord_ch).map { bam, bed -> tuple('vntr', bam, bed) }
+    pairs_ch      = bam_ch.combine(nonrep_bed_ch).map { bam, bed -> tuple('nonrep', bam, bed) }
+    pairs_vntr_ch = bam_vntr_ch.combine(vntr_bed_ch).map { bam, bed -> tuple('vntr', bam, bed) }
 
     all_pairs_ch = pairs_ch.mix(pairs_vntr_ch)
 

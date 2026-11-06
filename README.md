@@ -73,14 +73,14 @@ All files ending in `.bam` directly inside each directory are used as input. CRA
 | --- | --- | --- |
 | `--bam_dir` | Directory with the original BAM files | Required |
 | `--bam_dir_vntr` | Directory with the realigned BAM files | Required |
-| `--exons_coord` | BED files for the non-repetitive exons, in hg38 coordinates | `assets/lpa_nonrep_exons/nonrep-exon-{1,2}.bed` |
-| `--vntr_exons_coord` | BED files for the VNTR exons, in VNTR reference coordinates | `assets/lpa_kiv2_exons/vntr-exon-{1,2}.bed` |
+| `--nonrep_bed` | BED files for the non-repetitive regions, in hg38 coordinates | `assets/lpa_nonrep_exons/nonrep-exon-{1,2}.bed` |
+| `--vntr_bed` | BED files for the VNTR regions, in VNTR reference coordinates | `assets/lpa_kiv2_exons/vntr-exon-{1,2}.bed` |
 | `--save_coverage` | Also write the coverage summary to `results/coverage/` | `false` |
 | `--output_file_coverage` | Name of the coverage summary file | `coverage_summary.tsv` |
 
 ### Using another gene
 
-The pipeline works for any gene if you have the coordinates of its repeated and non-repetitive exons, plus BAM files covering the gene and BAM files realigned to the VNTR reference.
+The pipeline works for any gene if you have the coordinates of its repeated and non-repetitive regions, plus BAM files covering the gene and BAM files realigned to the VNTR reference.
 
 Pass your own BED files with a quoted glob. The files can have any name, as long as each name is used only once across both parameters.
 
@@ -88,8 +88,8 @@ Pass your own BED files with a quoted glob. The files can have any name, as long
 nextflow run main.nf -profile docker \
     --bam_dir /path/to/bams \
     --bam_dir_vntr /path/to/realigned_bams \
-    --exons_coord '/path/to/beds/nonrep-*.bed' \
-    --vntr_exons_coord '/path/to/beds/vntr-*.bed'
+    --nonrep_bed '/path/to/beds/nonrep-*.bed' \
+    --vntr_bed '/path/to/beds/vntr-*.bed'
 ```
 
 ## Output
@@ -107,8 +107,8 @@ Results are written to `results/`. The estimated copy number of the VNTR is the 
 | --- | --- |
 | `sample` | Sample name taken from the BAM file name |
 | One column per BED file, such as `vntr-exon-1.bed` | Mean coverage for that BED file |
-| `nonrep_mean` | Mean of the columns from `--exons_coord` |
-| `vntr_mean` | Mean of the columns from `--vntr_exons_coord` |
+| `nonrep_mean` | Mean of the columns from `--nonrep_bed` |
+| `vntr_mean` | Mean of the columns from `--vntr_bed` |
 | `cne_vntr` | Estimated VNTR copy number, `vntr_mean / nonrep_mean`. `NA` if `nonrep_mean` is missing or 0 |
 
 ## Running tests
