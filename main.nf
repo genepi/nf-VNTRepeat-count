@@ -6,11 +6,11 @@ include { FORMULA } from './modules/local/formula.nf'
 
 workflow {
     main:
-    exons_nonrep_ch      = Channel.fromPath(params.exons_coord)
-    bam_ch      = Channel.fromPath("${params.bam_dir}/*.bam")
+    exons_nonrep_ch      = Channel.fromPath(params.exons_coord, checkIfExists: true)
+    bam_ch      = Channel.fromPath("${params.bam_dir}/*.bam", checkIfExists: true)
 
-    vntr_exons_coord_ch = Channel.fromPath(params.vntr_exons_coord)
-    bam_vntr_ch = Channel.fromPath("${params.bam_dir_vntr}/*.bam")
+    vntr_exons_coord_ch = Channel.fromPath(params.vntr_exons_coord, checkIfExists: true)
+    bam_vntr_ch = Channel.fromPath("${params.bam_dir_vntr}/*.bam", checkIfExists: true)
 
     pairs_ch      = bam_ch.combine(exons_nonrep_ch).map { bam, bed -> tuple('nonrep', bam, bed) }
     pairs_vntr_ch = bam_vntr_ch.combine(vntr_exons_coord_ch).map { bam, bed -> tuple('vntr', bam, bed) }
