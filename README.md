@@ -8,8 +8,8 @@ The pipeline has been applied to the **KIV-2 VNTR** of the *LPA* gene, which is 
 
 ## How it works
 
-1. **COVERAGE** runs `bedtools coverage` for every BAM and BED combination and takes the mean across the regions in each BED file.
-2. **FORMULA** matches the two BAM files of each sample and calculates `cne_vntr = vntr_mean / nonrep_mean`.
+1. **COVERAGE** calculates the mean read coverage of each set of target regions in each alignment file.
+2. **FORMULA** combines the coverage values of each sample and estimates the VNTR copy number as the ratio of the mean VNTR coverage to the mean non-repetitive coverage.
 
 ## Requirements
 
