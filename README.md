@@ -1,3 +1,5 @@
+[![CI Tests](https://github.com/genepi/nf-VNTRepeat-count/actions/workflows/ci-tests.yml/badge.svg)](https://github.com/genepi/nf-VNTRepeat-count/actions/workflows/ci-tests.yml)
+
 # nf-VNTRepeat-count: A pipeline to estimate VNTR repeat count from short-read sequencing data
 
 A DSL2 Nextflow pipeline that estimates the copy number of a VNTR (variable number tandem repeat) from read coverage in WES or WGS data. It compares the mean coverage of the repeated exons with the mean coverage of the gene's non-repetitive exons.
