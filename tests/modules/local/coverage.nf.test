@@ -5,9 +5,6 @@ nextflow_process {
     process "COVERAGE"
 
     test("Should execute coverage.nf and create output") {
-        def bamFile = file("test-data/bam/NA12718.final.cram.LPA.bam")
-        def bedFile = file("assets/lpa_nonrep_exons/nonrep-exon-1.bed")
-
         when {
             params {
                 bam_dir                        = "test-data/bam"
@@ -15,7 +12,7 @@ nextflow_process {
             process {
                 """
                 // define inputs of the process here. 
-                input[0] = tuple(file("${bamFile}"), file("${bedFile}"))
+                input[0] = tuple("nonrep", file("\${projectDir}/test-data/bam/NA12718.final.cram.LPA.bam"), file("\${projectDir}/assets/lpa_nonrep_exons/nonrep-exon-1.bed"))
 
                 """
             }

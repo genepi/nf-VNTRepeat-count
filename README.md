@@ -87,7 +87,7 @@ All files ending in `.bam` directly inside each directory are used as input. CRA
 
 The pipeline works for any gene if you have the coordinates of its repeated and non-repetitive exons, plus BAM files covering the gene and BAM files realigned to the VNTR reference.
 
-Pass your own BED files with a quoted glob. The file names must start with `nonrep` and `vntr`, because that prefix is how the formula step groups the columns.
+Pass your own BED files with a quoted glob. The files can have any name, as long as each name is used only once across both parameters.
 
 ```bash
 nextflow run main.nf -profile docker \
@@ -104,7 +104,7 @@ Results are written to `results/`. The estimated copy number of the VNTR is the 
 | File | Contents |
 | --- | --- |
 | `results/estimates/estimates.tsv` | One row per sample |
-| `results/coverage/coverage_summary.tsv` | One row per BAM and BED combination, with the columns `BAM`, `BED` and `MEAN`. Only written with `--save_coverage` |
+| `results/coverage/coverage_summary.tsv` | One row per BAM and BED combination, with the columns `BAM`, `BED`, `TYPE` (`nonrep` or `vntr`) and `MEAN`. Only written with `--save_coverage` |
 
 `estimates.tsv` contains these columns:
 
@@ -112,8 +112,8 @@ Results are written to `results/`. The estimated copy number of the VNTR is the 
 | --- | --- |
 | `sample` | Sample name taken from the BAM file name |
 | One column per BED file, such as `vntr-exon-1.bed` | Mean coverage for that BED file |
-| `nonrep_mean` | Mean of the `nonrep*` columns |
-| `vntr_mean` | Mean of the `vntr*` columns |
+| `nonrep_mean` | Mean of the columns from `--exons_coord` |
+| `vntr_mean` | Mean of the columns from `--vntr_exons_coord` |
 | `cne_vntr` | Estimated VNTR copy number, `vntr_mean / nonrep_mean`. `NA` if `nonrep_mean` is missing or 0 |
 
 ## Running tests

@@ -31,4 +31,30 @@ test("Should execute formula.nf and create output") {
 
     }
 
+test("Should group BED files by type and not by file name") {
+
+      when {
+    process {
+        """
+        input[0] = file("\${projectDir}/test-data/input_formula/coverage_summary_custom_names.tsv")
+        input[1] = file("\${projectDir}/modules/local/R_scripts/formula.R")
+        """
+    }
+}
+
+        then {
+            assert process.success
+
+            def rows = path(process.out.results[0]).readLines()
+            def header = rows[0].split("\t").toList()
+            def cne = header.indexOf("cne_vntr")
+
+            assert header == ["sample", "gene-a-1.bed", "gene-a-2.bed", "repeat-b-1.bed", "repeat-b-2.bed", "nonrep_mean", "vntr_mean", "cne_vntr"]
+            assert rows.drop(1).collect { it.split("\t")[0] } == ["NA12718", "NA19108", "NA19235", "NA19308"]
+            assert rows.drop(1).every { it.split("\t")[cne] != "NA" }
+
+        }
+
+    }
+
 }

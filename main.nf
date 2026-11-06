@@ -12,15 +12,15 @@ workflow {
     vntr_exons_coord_ch = Channel.fromPath(params.vntr_exons_coord)
     bam_vntr_ch = Channel.fromPath("${params.bam_dir_vntr}/*.bam")
 
-    pairs_ch      = bam_ch.combine(exons_nonrep_ch)
-    pairs_vntr_ch = bam_vntr_ch.combine(vntr_exons_coord_ch)
+    pairs_ch      = bam_ch.combine(exons_nonrep_ch).map { bam, bed -> tuple('nonrep', bam, bed) }
+    pairs_vntr_ch = bam_vntr_ch.combine(vntr_exons_coord_ch).map { bam, bed -> tuple('vntr', bam, bed) }
 
     all_pairs_ch = pairs_ch.mix(pairs_vntr_ch)
 
     COVERAGE(all_pairs_ch)
     
     coverage_summary_ch = COVERAGE.out.row
-        .collectFile(name: params.output_file_coverage, seed: "BAM\tBED\tMEAN\n", newLine: false)
+        .collectFile(name: params.output_file_coverage, seed: "BAM\tBED\tTYPE\tMEAN\n", newLine: false, sort: { it.name })
 
     FORMULA(coverage_summary_ch, 
             file("${projectDir}/modules/local/R_scripts/formula.R"))
@@ -32,7 +32,7 @@ workflow {
 
 output {
     coverage {
-        enabled params.save_coverage
+        enabled params.save_coverage.toString().toBoolean()
         path 'coverage'
         mode 'copy'
     }

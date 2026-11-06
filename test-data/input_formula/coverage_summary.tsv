@@ -1,17 +1,17 @@
-BAM	BED	MEAN
-NA19235.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-2.bed	542.33
-NA19108.final.cram.LPA.bam	nonrep-exon-1.bed	33.1391
-NA19108.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-1.bed	712.506
-NA19235.final.cram.LPA.bam	nonrep-exon-1.bed	30.6672
-NA12718.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-2.bed	603.681
-NA19108.final.cram.LPA.bam	nonrep-exon-2.bed	35.3433
-NA12718.final.cram.LPA.bam	nonrep-exon-1.bed	40.0602
-NA19308.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-1.bed	1099.39
-NA12718.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-1.bed	655.812
-NA12718.final.cram.LPA.bam	nonrep-exon-2.bed	36.4181
-NA19308.final.cram.LPA.bam	nonrep-exon-2.bed	52.2638
-NA19108.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-2.bed	636.956
-NA19308.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-2.bed	931.324
-NA19308.final.cram.LPA.bam	nonrep-exon-1.bed	44.6461
-NA19235.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-1.bed	569.45
-NA19235.final.cram.LPA.bam	nonrep-exon-2.bed	34.9443
+BAM	BED	TYPE	MEAN
+NA19235.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-2.bed	vntr	542.33
+NA19108.final.cram.LPA.bam	nonrep-exon-1.bed	nonrep	33.1391
+NA19108.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-1.bed	vntr	712.506
+NA19235.final.cram.LPA.bam	nonrep-exon-1.bed	nonrep	30.6672
+NA12718.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-2.bed	vntr	603.681
+NA19108.final.cram.LPA.bam	nonrep-exon-2.bed	nonrep	35.3433
+NA12718.final.cram.LPA.bam	nonrep-exon-1.bed	nonrep	40.0602
+NA19308.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-1.bed	vntr	1099.39
+NA12718.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-1.bed	vntr	655.812
+NA12718.final.cram.LPA.bam	nonrep-exon-2.bed	nonrep	36.4181
+NA19308.final.cram.LPA.bam	nonrep-exon-2.bed	nonrep	52.2638
+NA19108.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-2.bed	vntr	636.956
+NA19308.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-2.bed	vntr	931.324
+NA19308.final.cram.LPA.bam	nonrep-exon-1.bed	nonrep	44.6461
+NA19235.final.cram.LPA.extracted.extracted.kiv2.realigned.bam	vntr-exon-1.bed	vntr	569.45
+NA19235.final.cram.LPA.bam	nonrep-exon-2.bed	nonrep	34.9443
