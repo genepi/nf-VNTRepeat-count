@@ -76,7 +76,6 @@ All files ending in `.bam` directly inside each directory are used as input. CRA
 | `--nonrep_bed` | BED files for the non-repetitive regions, in hg38 coordinates | `assets/lpa_nonrep_exons/nonrep-exon-{1,2}.bed` |
 | `--vntr_bed` | BED files for the VNTR regions, in VNTR reference coordinates | `assets/lpa_kiv2_exons/vntr-exon-{1,2}.bed` |
 | `--save_coverage` | Also write the coverage summary to `results/coverage/` | `false` |
-| `--output_file_coverage` | Name of the coverage summary file | `coverage_summary.tsv` |
 
 ### Using another gene
 

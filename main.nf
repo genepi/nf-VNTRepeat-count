@@ -20,7 +20,7 @@ workflow {
     COVERAGE(all_pairs_ch)
     
     coverage_summary_ch = COVERAGE.out.row
-        .collectFile(name: params.output_file_coverage, seed: "BAM\tBED\tTYPE\tMEAN\n", newLine: false, sort: { it.name })
+        .collectFile(name: 'coverage_summary.tsv', seed: "BAM\tBED\tTYPE\tMEAN\n", newLine: false, sort: { it.name })
 
     FORMULA(coverage_summary_ch, 
             file("${projectDir}/modules/local/R_scripts/formula.R"))
