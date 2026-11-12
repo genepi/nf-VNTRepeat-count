@@ -80,6 +80,21 @@ All files ending in `.bam` directly inside each directory are used as input. CRA
 
 The default `--nonrep_bed` coordinates are for hg38. For other references, such as hg37, pass your own BED files with `--nonrep_bed`.
 
+### Normalisation
+
+With `--normalise`, the copy number of each sample is divided by the mean copy number of the samples with the most similar genome-wide coverage profile, based on Mukamel et al. 2021 (Science). The result is the `cne_norm` column in `results/estimates/estimates_normalised.tsv`.
+
+The coverage profiles are computed with [mosdepth](https://github.com/brentp/mosdepth) in 1 kb windows from the `--bam_dir` BAM files. These must be whole-exome or whole-genome BAM files, with a `.bai` index next to each one, and there must be more samples than `--norm_neighbours`. The mosdepth output is written to `results/mosdepth/`, and you can reuse it in later runs with `--mosdepth_dir`.
+
+| Parameter | Description | Default |
+| --- | --- | --- |
+| `--normalise` | Run the normalisation | `false` |
+| `--mosdepth_dir` | Folder with `<sample>.regions.bed.gz` from an earlier run. Skips mosdepth | Not set |
+| `--repeats_file` | UCSC simpleRepeat table; windows overlapping it are excluded | UCSC hg38 download |
+| `--norm_neighbours` | Number of neighbours | `200` |
+| `--norm_depth_min`, `--norm_depth_max` | Keep windows with a mean depth in this range. Adjust to your sequencing depth | `30`, `300` |
+| `--norm_exclude_region` | Region around the gene, excluded from the windows | `chr6:159530000-161666000` (LPA ±1 Mb, GRCh38) |
+
 ### Using another gene
 
 The pipeline works for any gene if you have its VNTR coordinates and non-repetitive coordinates, plus BAM files covering the gene and BAM files realigned to the VNTR reference.
