@@ -90,10 +90,18 @@ The coverage profiles are computed with [mosdepth](https://github.com/brentp/mos
 | --- | --- | --- |
 | `--normalise` | Run the normalisation | `false` |
 | `--mosdepth_dir` | Folder with `<sample>.regions.bed.gz` from an earlier run. Skips mosdepth | Not set |
-| `--repeats_file` | UCSC simpleRepeat table; windows overlapping it are excluded | UCSC hg38 download |
+| `--repeats_file` | UCSC simpleRepeat table for your reference; windows overlapping it are excluded | [hg38 `simpleRepeat.txt.gz`](https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/simpleRepeat.txt.gz) |
 | `--norm_neighbours` | Number of neighbours | `200` |
 | `--norm_depth_min`, `--norm_depth_max` | Keep windows with a mean depth in this range. Adjust to your sequencing depth | `30`, `300` |
 | `--norm_exclude_region` | Region around the gene, excluded from the windows | `chr6:159530000-161666000` (LPA ±1 Mb, GRCh38) |
+
+#### Simple repeats file
+
+The normalisation supports hg38 BAM files only. By default the UCSC hg38 simpleRepeat table is downloaded when the pipeline runs:
+
+https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/simpleRepeat.txt.gz
+
+On machines without internet access, download this file first and pass the local path with `--repeats_file`. Use the file as downloaded. The pipeline reads the chromosome, start and end from columns 2 to 4, so a 3-column BED file exported from the UCSC Table Browser will not work.
 
 ### Using another gene
 
